@@ -3,7 +3,11 @@ import requests
 class MovieData():
     url = 'http://www.omdbapi.com'
     apikey = 'ad1960a5'
-    fields = ['Season', 'Runtime']
+    # fields = ["Season", 'Runtime']
+
+    fields = ["Title","Year","Rated","Released","Runtime","Genre","Director","Writer","Actors","Plot",
+              "Language","Country","Awards","Poster","Ratings","Metascore","imdbRating","imdbVotes",
+              "imdbID","Type","DVD","BoxOffice","Production","Website","Response", "Season"]
 
     def __init__(self):
         self.session = requests.Session()
@@ -13,7 +17,7 @@ class MovieData():
             't' : title,
             'apikey' : self.apikey
         }
-        res = self.session.get(self.url, params = params, timeout = timeout)
+        res = self.session.get(self.url, params=params, timeout=timeout)
 
         res.raise_for_status()
 

@@ -37,9 +37,28 @@ class CreateMoviesView(generics.ListCreateAPIView):
 
         serializer.save(
             year=omdbdata['Year'],
+            rated=omdbdata['Rated'],
             released=omdbdata['Released'],
             runtime=omdbdata['Runtime'],
+            genre=omdbdata['Genre'],
+            director=omdbdata['Director'],
+            writer=omdbdata['Writer'],
             actors=omdbdata['Actors'],
+            plot=omdbdata['Plot'],
+            language=omdbdata['Language'],
+            country=omdbdata['Country'],
+            awards=omdbdata['Awards'],
+            poster=omdbdata['Poster'],
+            ratings=omdbdata['Ratings'],
+            metascore=omdbdata['Metascore'],
+            imdbRating=omdbdata['imdbRating'],
+            imdbVotes=omdbdata['imdbVotes'],
+            imdbID=omdbdata['imdbID'],
+            type=omdbdata['Type'],
+            dvd=omdbdata['DVD'],
+            boxoffice=omdbdata['BoxOffice'],
+            production=omdbdata['Production'],
+            website=omdbdata['Website'],
             season=omdbdata['Season']
         )
 
