@@ -7,6 +7,8 @@ from .models import Movielist, Comment
 from rest_framework.response import Response
 from .omdb import MovieData
 import requests
+from django_filters.rest_framework import DjangoFilterBackend, FilterSet
+from rest_framework.filters import OrderingFilter
 
 # Create your views here.
 
@@ -14,6 +16,9 @@ class CreateMoviesView(generics.ListCreateAPIView):
     queryset = Movielist.objects.all()
     serializer_class = MovielistSerializer
     http_method_names = [u'get', u'post']
+    filter_backends = (DjangoFilterBackend, OrderingFilter,)
+    filter_fields = ('year', 'country')
+    ordering_fields = ('year', 'metascore')
 
     # def perform_create(self, serializer):
     #     serializer.save()
