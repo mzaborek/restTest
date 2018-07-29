@@ -1,16 +1,15 @@
-from rest_framework.test import APIClient
-from rest_framework import status
-from django.urls import reverse
-
 from django.test import TestCase
+from rest_framework import status
+from rest_framework.test import APIClient
+
 from .models import Movielist, Comment
+
 
 # Create your tests here.
 class MovieViewTestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.movielist_data = {'title':'Giant'}
-
+        self.movielist_data = {'Title': 'Giant'}
 
     def test_api_can_create_a_movielist(self):
         """Test if API can create a movie data"""
@@ -29,8 +28,8 @@ class MovieViewTestCase(TestCase):
 
 class ModelTestCase(TestCase):
     def setUp(self):
-        self.movielist_title= "Giant"
-        self.movielist_title = Movielist(title=self.movielist_title)
+        self.movielist_title = "Giant"
+        self.movielist_title = Movielist(Title=self.movielist_title)
 
     def test_model_can_create_movielist(self):
         old_count = Movielist.objects.count()
@@ -44,7 +43,7 @@ class CommentViewTestCase(TestCase):
         self.client = APIClient()
         response = self.client.post(
             '/movies/',
-            {'title': 'Giant'},
+            {'Title': 'Giant'},
             format="json"
         )
         # print("response id = ", response.json()['id'])
@@ -66,13 +65,14 @@ class CommentViewTestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_api_can_get_filtered_comments(self):
-        response = self.client.get('/comments/', params = {'movie': self.movieid})
+        response = self.client.get('/comments/', params={'movie': self.movieid})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
 
 class CommentsModelTestCase(TestCase):
     def setUp(self):
-        self.movielist_title= "Giant"
-        self.movielist_title = Movielist(title=self.movielist_title)
+        self.movielist_title = "Giant"
+        self.movielist_title = Movielist(Title=self.movielist_title)
         self.movielist_title.save()
 
         self.commentText = "asdasdasdasda"
