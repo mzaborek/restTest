@@ -3,3 +3,5 @@
 *.pyo
 \.idea/
 \venv/
+
+djangorest/db\.sqlite3
